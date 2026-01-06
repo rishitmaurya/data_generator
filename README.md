@@ -11,15 +11,14 @@ This project generates **high-quality seed data** simulating an Asana workspace 
 ## **Project Structure**
 
 ```
-c:/programming/asana_simulation/data_generator/
-├── .gitignore                  # Git ignore rules
-├─] env/                        # Virtual environment (ignored in Git)
+├── .gitignore
+├─] env/ (ignored)
 ├── output/
-│   └── asana_simulation.sqlite # Generated SQLite database
-├── requirements.txt            # Python dependencies
-├── schema.sql                  # Database schema (DDL)
+│   └── asana_simulation.sqlite
+├── requirements.txt
+├── schema.sql
 └── src/
-    ├── generators/             # Data generation modules
+    ├── generators/
     │   ├── attachments.py
     │   ├── comments.py
     │   ├── fields.py
@@ -32,15 +31,33 @@ c:/programming/asana_simulation/data_generator/
     │   ├── team_memberships.py
     │   ├── users.py
     │   ├── __init__.py
-    │   └── __pycache__/        # Compiled Python files
-    ├── main.py                  # Entry point to generate full dataset
-    ├── utils/                   # Helper modules
-    │   ├── config.py            # Configuration (number of users, tasks, probabilities)
-    │   ├── db.py                # SQLite connection utility
+    │   └── __pycache__/
+    │       ├── attachments.cpython-312.pyc
+    │       ├── comments.cpython-312.pyc
+    │       ├── fields.cpython-312.pyc
+    │       ├── organizations.cpython-312.pyc
+    │       ├── projects.cpython-312.pyc
+    │       ├── sections.cpython-312.pyc
+    │       ├── tags.cpython-312.pyc
+    │       ├── tasks.cpython-312.pyc
+    │       ├── teams.cpython-312.pyc
+    │       ├── team_memberships.cpython-312.pyc
+    │       ├── users.cpython-312.pyc
+    │       └── __init__.cpython-312.pyc
+    ├── main.py
+    ├── utils/
+    │   ├── config.py
+    │   ├── db.py
     │   ├── __init__.py
     │   └── __pycache__/
+    │       ├── config.cpython-312.pyc
+    │       ├── db.cpython-312.pyc
+    │       ├── llm.cpython-312.pyc
+    │       └── __init__.cpython-312.pyc
     ├── __init__.py
     └── __pycache__/
+        ├── main.cpython-312.pyc
+        └── __init__.cpython-312.pyc
 ```
 
 ---
