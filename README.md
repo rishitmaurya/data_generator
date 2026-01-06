@@ -11,6 +11,7 @@ This project generates **high-quality seed data** simulating an Asana workspace 
 ## **Project Structure**
 
 ```
+Asana_simulation/data_generator/
 ├── .gitignore
 ├─] env/ (ignored)
 ├── output/
@@ -32,32 +33,14 @@ This project generates **high-quality seed data** simulating an Asana workspace 
     │   ├── users.py
     │   ├── __init__.py
     │   └── __pycache__/
-    │       ├── attachments.cpython-312.pyc
-    │       ├── comments.cpython-312.pyc
-    │       ├── fields.cpython-312.pyc
-    │       ├── organizations.cpython-312.pyc
-    │       ├── projects.cpython-312.pyc
-    │       ├── sections.cpython-312.pyc
-    │       ├── tags.cpython-312.pyc
-    │       ├── tasks.cpython-312.pyc
-    │       ├── teams.cpython-312.pyc
-    │       ├── team_memberships.cpython-312.pyc
-    │       ├── users.cpython-312.pyc
-    │       └── __init__.cpython-312.pyc
     ├── main.py
     ├── utils/
     │   ├── config.py
     │   ├── db.py
     │   ├── __init__.py
     │   └── __pycache__/
-    │       ├── config.cpython-312.pyc
-    │       ├── db.cpython-312.pyc
-    │       ├── llm.cpython-312.pyc
-    │       └── __init__.cpython-312.pyc
     ├── __init__.py
     └── __pycache__/
-        ├── main.cpython-312.pyc
-        └── __init__.cpython-312.pyc
 ```
 
 ---
