@@ -1,7 +1,3 @@
-Here’s a comprehensive **README.md** tailored for your project structure, installation, usage, and connectivity explanation:
-
----
-
 # **Asana Simulation Data Generator**
 
 This project generates **high-quality seed data** simulating an Asana workspace for a B2B SaaS company with 5,000–10,000 users. The dataset can be used for **reinforcement learning experiments, testing AI agents**, or evaluating enterprise workflows.
