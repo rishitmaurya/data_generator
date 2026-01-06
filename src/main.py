@@ -1,5 +1,7 @@
 import os
+import random
 from utils.db import get_connection
+from utils.config import RANDOM_SEED
 from generators.organizations import generate_organization
 from generators.users import generate_users
 from generators.teams import generate_teams
@@ -11,6 +13,8 @@ from generators.tags import generate_tags
 from generators.comments import generate_comments
 from generators.attachments import generate_attachments
 from generators.fields import generate_custom_fields
+# Optional: verification script
+# from utils.verify import verify_relational_integrity
 
 
 def apply_schema(conn, schema_file="schema.sql"):
@@ -25,7 +29,11 @@ def apply_schema(conn, schema_file="schema.sql"):
     conn.executescript(sql)
     print("[Schema] Applied schema.sql successfully.")
 
+
 def clear_database(conn):
+    """
+    Drop all tables before regeneration
+    """
     cursor = conn.cursor()
     tables = [
         'task_tags', 'tags', 'custom_field_values', 'custom_field_definitions',
@@ -36,6 +44,7 @@ def clear_database(conn):
         cursor.execute(f"DROP TABLE IF EXISTS {table}")
     conn.commit()
     print("[Database] Cleared existing tables.")
+
 
 def populate_context(conn, context):
     """
@@ -68,14 +77,19 @@ def populate_context(conn, context):
     context["tasks"] = tasks_dict
 
 
-
 def main():
+    # Seed for reproducibility
+    random.seed(RANDOM_SEED)
+
     conn = get_connection()
-    
-    # Apply schema
+
+    # Optional: clear database before generating
+    # clear_database(conn)
+
+    # Step 1: Apply schema
     apply_schema(conn)
 
-    # Initialize context (do it only once!)
+    # Initialize context (shared across generators)
     context = {}
 
     # Step 6: Organization + Users
@@ -104,7 +118,12 @@ def main():
     generate_custom_fields(conn, context)
     print("Step 9 complete: Comments, Attachments, Tags, Custom Fields generated.")
 
+    # Step 10: Optional verification of relational integrity
+    # verify_relational_integrity(conn)
+    # print("Step 10 complete: Relational integrity verified.")
+
     conn.close()
+    print("[Database] Generation completed successfully.")
 
 
 if __name__ == "__main__":

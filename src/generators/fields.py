@@ -1,6 +1,7 @@
 import uuid
 import random
 from datetime import datetime
+from utils.config import CUSTOM_FIELDS_PER_PROJECT_MIN, CUSTOM_FIELDS_PER_PROJECT_MAX
 
 FIELD_TYPES = ['text', 'number', 'enum']
 
@@ -8,9 +9,10 @@ def generate_custom_fields(conn, context):
     cursor = conn.cursor()
 
     for project_id in context["projects"]:
-        # Create 1-5 custom fields per project
-        num_fields = random.randint(1, 5)
+        # Random number of fields per project
+        num_fields = random.randint(CUSTOM_FIELDS_PER_PROJECT_MIN, CUSTOM_FIELDS_PER_PROJECT_MAX)
         custom_fields = []
+
         for _ in range(num_fields):
             custom_field_id = str(uuid.uuid4())
             name = f"CF {uuid.uuid4().hex[:5]}"

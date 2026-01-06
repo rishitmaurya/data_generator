@@ -1,7 +1,6 @@
 import uuid
 import random
-
-TAG_POOL_SIZE = 75  # Number of tags to generate
+from utils.config import TAG_POOL_SIZE, TAG_ASSIGN_MIN, TAG_ASSIGN_MAX
 
 def generate_tags(conn, context):
     cursor = conn.cursor()
@@ -16,7 +15,7 @@ def generate_tags(conn, context):
 
     # Assign tags to tasks
     for task_id in context["tasks"]:
-        num_tags = random.randint(0, 5)
+        num_tags = random.randint(TAG_ASSIGN_MIN, TAG_ASSIGN_MAX)
         assigned_tags = random.sample(tags, k=min(num_tags, len(tags)))
         for tag_id in assigned_tags:
             cursor.execute("INSERT INTO task_tags (task_id, tag_id) VALUES (?, ?)", (task_id, tag_id))
