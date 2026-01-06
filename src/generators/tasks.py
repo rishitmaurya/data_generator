@@ -11,6 +11,8 @@ from utils.config import (
     COMPLETION_MIN_DAYS, COMPLETION_MAX_DAYS,
     SUBTASK_MIN_OFFSET_DAYS, SUBTASK_MAX_OFFSET_DAYS
 )
+from utils.task_text_provider import get_task_text
+
 
 fake = Faker()
 random.seed(42)
@@ -36,8 +38,9 @@ def generate_tasks(conn, context):
         for _ in range(num_tasks):
             task_id = str(uuid.uuid4())
             section_id = random.choice(context["sections"][project_id])
-            name = fake.sentence(nb_words=6)
-            description = fake.paragraph(nb_sentences=3)
+            name, description = get_task_text()
+            # name = fake.sentence(nb_words=6)
+            # description = fake.paragraph(nb_sentences=3)
             
             # Assign created_by and assignee with edge case probabilities
             created_by = random.choice(team_users) if team_users else None
@@ -66,8 +69,12 @@ def generate_tasks(conn, context):
                 num_subtasks = random.randint(SUBTASKS_MIN, SUBTASKS_MAX)
                 for _ in range(num_subtasks):
                     subtask_id = str(uuid.uuid4())
-                    subtask_name = fake.sentence(nb_words=5)
-                    subtask_description = fake.paragraph(nb_sentences=2)
+                    parent_name = name
+                    subtask_name = f"{parent_name.split()[0]} subtask"
+                    subtask_description = f"Part of: {parent_name}. {description[:120]}"
+
+                    # subtask_name = fake.sentence(nb_words=5)
+                    # subtask_description = fake.paragraph(nb_sentences=2)
                     subtask_assignee = random.choice(team_users) if team_users and random.random() > UNASSIGNED_TASK_PROBABILITY else None
                     subtask_created_at = created_at + timedelta(days=random.randint(SUBTASK_MIN_OFFSET_DAYS, SUBTASK_MAX_OFFSET_DAYS))
                     subtask_updated_at = subtask_created_at + timedelta(days=random.randint(0, 7))

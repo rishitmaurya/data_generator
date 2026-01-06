@@ -1,0 +1,20 @@
+import json
+
+# Curated realistic workflow tasks (extracted once manually or semi-automated)
+JIRA_STYLE_TASKS = [
+    {
+        "name": "Implement user authentication flow",
+        "description": "Add login, logout, and session handling. Ensure token refresh and error handling."
+    },
+    {
+        "name": "Fix payment gateway timeout issue",
+        "description": "Investigate intermittent failures during checkout and apply retry logic."
+    },
+    {
+        "name": "Prepare Q3 marketing campaign assets",
+        "description": "Coordinate with design team to finalize banners, email templates, and landing pages."
+    }
+]
+
+with open("scraped_data/jira_tasks_raw.json", "w") as f:
+    json.dump(JIRA_STYLE_TASKS, f, indent=2)
