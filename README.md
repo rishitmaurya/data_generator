@@ -50,8 +50,8 @@ Asana_simulation/data_generator/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/asana_simulation.git
-cd c:/programming/asana_simulation/data_generator/
+git clone https://github.com/rishitmaurya/data_generator.git
+cd ./data_generator/
 ```
 
 ### 2. Set up Virtual Environment
