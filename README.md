@@ -12,8 +12,17 @@ Asana_simulation/data_generator/
 ├─] env/ (ignored)
 ├── output/
 │   └── asana_simulation.sqlite
+├── README.md
 ├── requirements.txt
 ├── schema.sql
+├── scraped_data/
+│   ├── github_tasks_raw.json
+│   ├── jira_tasks_raw.json
+│   └── task_corpus.json
+├── scrapers/
+│   ├── github_tasks_scraper.py
+│   ├── jira_demo_scraper.py
+│   └── normalize_tasks.py
 └── src/
     ├── generators/
     │   ├── attachments.py
@@ -33,10 +42,12 @@ Asana_simulation/data_generator/
     ├── utils/
     │   ├── config.py
     │   ├── db.py
+    │   ├── task_text_provider.py
     │   ├── __init__.py
     │   └── __pycache__/
     ├── __init__.py
     └── __pycache__/
+   
 ```
 
 ---
